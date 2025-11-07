@@ -1,0 +1,84 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "title": "Mountain Sunset",
+      "url": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+      "thumbnail": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400",
+      "category": "Nature",
+      "description": "Beautiful sunset over mountain peaks",
+      "photographer": "John Doe",
+      "uploadDate": "2024-01-15"
+    },
+    {
+      "id": 2,
+      "title": "Ocean Waves",
+      "url": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800",
+      "thumbnail": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=400",
+      "category": "Nature",
+      "description": "Powerful waves crashing on the shore",
+      "photographer": "Jane Smith",
+      "uploadDate": "2024-01-16"
+    },
+    {
+      "id": 3,
+      "title": "City Lights",
+      "url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800",
+      "thumbnail": "https://images.unsplash.com/photo-1514565131-fce0801e5785?w=400",
+      "category": "Urban",
+      "description": "City skyline at night",
+      "photographer": "Mike Johnson",
+      "uploadDate": "2024-01-17"
+    },
+    {
+      "id": 4,
+      "title": "Forest Path",
+      "url": "https://images.unsplash.com/photo-1511497584788-876760111969?w=800",
+      "thumbnail": "https://images.unsplash.com/photo-1511497584788-876760111969?w=400",
+      "category": "Nature",
+      "description": "Tranquil path through the forest",
+      "photographer": "Sarah Williams",
+      "uploadDate": "2024-01-18"
+    },
+    {
+      "id": 5,
+      "title": "Modern Architecture",
+      "url": "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800",
+      "thumbnail": "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=400",
+      "category": "Urban",
+      "description": "Contemporary building design",
+      "photographer": "Alex Brown",
+      "uploadDate": "2024-01-19"
+    },
+    {
+      "id": 6,
+      "title": "Desert Dunes",
+      "url": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800",
+      "thumbnail": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=400",
+      "category": "Nature",
+      "description": "Golden sand dunes at sunrise",
+      "photographer": "David Lee",
+      "uploadDate": "2024-01-20"
+    },
+    {
+      "id": 7,
+      "title": "Street Art",
+      "url": "https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=800",
+      "thumbnail": "https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=400",
+      "category": "Urban",
+      "description": "Colorful street art mural",
+      "photographer": "Emily Davis",
+      "uploadDate": "2024-01-21"
+    },
+    {
+      "id": 8,
+      "title": "Starry Night",
+      "url": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800",
+      "thumbnail": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400",
+      "category": "Nature",
+      "description": "Night sky filled with stars",
+      "photographer": "Chris Martin",
+      "uploadDate": "2024-01-22"
+    }
+  ]
+}
