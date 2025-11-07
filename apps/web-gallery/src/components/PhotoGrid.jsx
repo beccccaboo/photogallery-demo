@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PhotoCard from './PhotoCard';
 import './PhotoGrid.css';
 
 function PhotoGrid({ images, onImageClick, selectedCategory }) {
-  const filteredImages = selectedCategory === 'All'
-    ? images
-    : images.filter(img => img.category === selectedCategory);
+  const filteredImages = useMemo(() => {
+    return selectedCategory === 'All'
+      ? images
+      : images.filter(img => img.category === selectedCategory);
+  }, [images, selectedCategory]);
 
   return (
     <div className="photo-grid">
