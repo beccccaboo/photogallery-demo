@@ -42,8 +42,9 @@ app.get('/api/images/category/:category', (req, res) => {
 // Serve static files from the public directory (frontend build)
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Serve index.html for all other routes (SPA support)
+// Serve index.html for all non-API routes (SPA support)
 app.get('*', (req, res) => {
+  // This catch-all only handles routes not matched above (API routes are already handled)
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
