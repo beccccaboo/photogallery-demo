@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  api-server:
+    build:
+      context: ./apps/api-server
+      dockerfile: Dockerfile
+    container_name: photogallery-api
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - photogallery-network
+
+  web-gallery:
+    build:
+      context: ./apps/web-gallery
+      dockerfile: Dockerfile
+    container_name: photogallery-web
+    ports:
+      - "80:80"
+    environment:
+      - VITE_API_URL=http://localhost:3001
+    depends_on:
+      - api-server
+    restart: unless-stopped
+    networks:
+      - photogallery-network
+
+networks:
+  photogallery-network:
+    driver: bridge

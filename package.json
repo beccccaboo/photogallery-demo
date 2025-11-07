@@ -1,0 +1,31 @@
+{
+  "name": "photogallery-demo",
+  "version": "1.0.0",
+  "description": "PhotoGallery App - A monorepo-based microservice demo for cloud deployment",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "install-all": "npm install",
+    "dev:api": "npm run dev --workspace=api-server",
+    "dev:web": "npm run dev --workspace=web-gallery",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "build:api": "npm run build --workspace=api-server",
+    "build:web": "npm run build --workspace=web-gallery",
+    "build": "npm run build:api && npm run build:web",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down"
+  },
+  "keywords": [
+    "monorepo",
+    "microservices",
+    "docker",
+    "aws",
+    "demo"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
