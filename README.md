@@ -20,18 +20,17 @@ photogallery-demo/
 │   │   │   ├── components/   # Photo gallery components
 │   │   │   ├── services/     # API integration
 │   │   │   └── App.jsx
-│   │   ├── Dockerfile
 │   │   └── package.json
 │   │
 │   └── api-server/           # Node.js Express backend
 │       ├── src/
-│       │   └── index.js      # API endpoints
+│       │   └── index.js      # API endpoints & static file server
 │       ├── data/
 │       │   └── images.json   # Sample image metadata
-│       ├── Dockerfile
 │       └── package.json
 │
-├── docker-compose.yml        # Multi-container orchestration
+├── Dockerfile                # Multi-stage build for both services
+├── docker-compose.yml        # Container orchestration
 ├── package.json             # Root workspace configuration
 └── README.md
 ```
@@ -53,7 +52,7 @@ photogallery-demo/
    ```bash
    npm run dev:api
    ```
-   API runs on `http://localhost:3001`
+   API runs on `http://localhost:8080`
 
 3. **Start the web app** (in a new terminal):
    ```bash
@@ -66,14 +65,13 @@ photogallery-demo/
 
 ### Docker Deployment
 
-1. **Build and start all services**:
+1. **Build and start the service**:
    ```bash
    docker-compose up --build
    ```
 
 2. **Access the application**:
-   - Web App: `http://localhost`
-   - API: `http://localhost:3001`
+   - Application (Frontend + API): `http://localhost:8080`
 
 3. **Stop all services**:
    ```bash
@@ -89,7 +87,7 @@ photogallery-demo/
   - Category-based filtering
   - Modal for full-size image viewing
   - API integration for dynamic content
-- **Container**: nginx serving static build
+- **Production**: Static files served by Express backend
 
 ### Backend (api-server)
 - **Framework**: Express.js
@@ -98,20 +96,25 @@ photogallery-demo/
   - `GET /api/images` - Get all images
   - `GET /api/images/:id` - Get specific image
   - `GET /api/images/category/:category` - Filter by category
+  - `GET /*` - Serves frontend static files (SPA routing)
 - **Data**: JSON-based image metadata
+- **Port**: 8080 (serves both API and frontend)
 
 ## 🐳 Docker Strategy
 
-Each microservice has its own Dockerfile:
+**Single multi-stage Dockerfile** that builds both frontend and backend:
 
-- **api-server**: Node.js Alpine container
-- **web-gallery**: Multi-stage build (Node.js build → nginx serve)
+1. **Frontend build stage**: Builds React app with Vite
+2. **Backend build stage**: Installs production dependencies
+3. **Final stage**: Combines both into a single Node.js Alpine container
+   - Backend serves API endpoints
+   - Backend serves frontend static files from `/public`
 
 Benefits demonstrated:
-- Independent scaling
-- Isolated dependencies
-- Production-ready containers
-- Efficient caching layers
+- Simplified deployment (single container)
+- Efficient build with multi-stage approach
+- Production-ready Alpine-based image
+- Unified service for easier orchestration
 
 ## ☁️ AWS Deployment Guide
 

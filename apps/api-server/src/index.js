@@ -1,9 +1,10 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const imageData = require('../data/images.json');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(cors());
@@ -14,6 +15,7 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', service: 'PhotoGallery API' });
 });
 
+// API endpoints
 // Get all images
 app.get('/api/images', (req, res) => {
   res.json(imageData);
@@ -35,6 +37,14 @@ app.get('/api/images/category/:category', (req, res) => {
     img.category.toLowerCase() === req.params.category.toLowerCase()
   );
   res.json({ images: filtered });
+});
+
+// Serve static files from the public directory (frontend build)
+app.use(express.static(path.join(__dirname, '../public')));
+
+// Serve index.html for all other routes (SPA support)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 app.listen(PORT, () => {

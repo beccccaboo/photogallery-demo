@@ -17,8 +17,10 @@ Create a `.env` file from `.env.example`:
 cp .env.example .env
 ```
 
-Configure the API URL:
-- `VITE_API_URL` - URL of the API server (default: http://localhost:3001)
+Configure the API URL (optional):
+- `VITE_API_URL` - URL of the API server (default: empty string for same-origin requests)
+  - For local dev with separate servers: `http://localhost:8080`
+  - For production Docker: leave empty (served from same origin)
 
 ## Local Development
 
@@ -29,20 +31,24 @@ npm run dev
 
 App runs on `http://localhost:3000`
 
+When using Docker, the backend serves the built frontend, so both API and frontend are available on the same port.
+
 ## Build
 
 ```bash
 npm run build
 ```
 
+Outputs to `dist/` directory.
+
 ## Docker
 
-Build and run the container:
+The application is built using a multi-stage Dockerfile at the project root that combines frontend and backend:
 
 ```bash
-docker build -t photogallery-web .
-docker run -p 80:80 photogallery-web
+# From project root
+docker build -t photogallery-app .
+docker run -p 8080:8080 photogallery-app
 ```
 
-Access at `http://localhost`
-
+Access the complete application (frontend + API) at `http://localhost:8080`

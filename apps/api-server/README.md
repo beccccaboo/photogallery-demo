@@ -1,6 +1,12 @@
 # API Server
 
-Express.js API server for the PhotoGallery app that serves image metadata.
+Express.js API server for the PhotoGallery app that serves image metadata and frontend static files.
+
+## Features
+
+- RESTful API for image metadata
+- Serves frontend static files (SPA routing support)
+- CORS enabled for development
 
 ## API Endpoints
 
@@ -8,6 +14,7 @@ Express.js API server for the PhotoGallery app that serves image metadata.
 - `GET /api/images` - Get all images
 - `GET /api/images/:id` - Get a specific image by ID
 - `GET /api/images/category/:category` - Get images by category
+- `GET /*` - Serves frontend static files
 
 ## Local Development
 
@@ -16,13 +23,23 @@ npm install
 npm run dev
 ```
 
-Server runs on `http://localhost:3001`
+Server runs on `http://localhost:8080`
+
+## Production Build
+
+In production (Docker), the server:
+1. Serves API endpoints on `/api/*` and `/health`
+2. Serves frontend static files from `/public` directory
+3. Handles SPA routing (all non-API routes serve index.html)
 
 ## Docker
 
-Build and run the container:
+The application is built using a multi-stage Dockerfile at the project root:
 
 ```bash
-docker build -t photogallery-api .
-docker run -p 3001:3001 photogallery-api
+# From project root
+docker build -t photogallery-app .
+docker run -p 8080:8080 photogallery-app
 ```
+
+Access at `http://localhost:8080`
