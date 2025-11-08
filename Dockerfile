@@ -10,7 +10,7 @@ RUN npm run build
 FROM node:18 AS backend-build
 WORKDIR /app/apps/api-server
 COPY ./apps/api-server/package*.json ./
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 COPY ./apps/api-server .
 
 # Final stage
